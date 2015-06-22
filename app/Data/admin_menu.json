@@ -1,0 +1,13 @@
+{
+  "Boletas": {
+    "code"  : "001",
+    "route" : "ballots",
+    "icon"  : "list"
+  },
+  "Usuarios": {
+    "code"  : "002",
+    "route" : "users",
+    "icon"  : "users",
+    "type"  : "administrator"
+  }
+}
