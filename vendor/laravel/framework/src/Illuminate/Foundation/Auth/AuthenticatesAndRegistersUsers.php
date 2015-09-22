@@ -71,10 +71,10 @@ trait AuthenticatesAndRegistersUsers {
 	public function postLogin(Request $request)
 	{
 		$this->validate($request, [
-			'username' => 'required', 'password' => 'required',
+			'email' => 'required|email', 'password' => 'required',
 		]);
 
-		$credentials = $request->only('username', 'password');
+		$credentials = $request->only('email', 'password');
 
 		if ($this->auth->attempt($credentials, $request->has('remember')))
 		{
@@ -82,9 +82,9 @@ trait AuthenticatesAndRegistersUsers {
 		}
 
 		return redirect($this->loginPath())
-					->withInput($request->only('username', 'remember'))
+					->withInput($request->only('email', 'remember'))
 					->withErrors([
-						'username' => $this->getFailedLoginMessage(),
+						'email' => $this->getFailedLoginMessage(),
 					]);
 	}
 

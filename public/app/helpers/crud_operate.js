@@ -49,6 +49,7 @@ $('.delete').click(function(e){
         $('#modal-delete').modal({show:true});
         $('#btn-delete').click(function(){
             $('#btn-delete').prop('disabled',true);
+            debugger
             CRUD.action('#form-delete',function(){
                 $(window.$contenedor).load(CRUD.url_base ,function(){
                     $('#modal-delete').modal('hide');
@@ -58,6 +59,5 @@ $('.delete').click(function(e){
             });
         });
     });
-
     e.preventDefault();
 })

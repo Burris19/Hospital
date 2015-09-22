@@ -1,23 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: YOEL
- * Date: 18/03/15
- * Time: 12:01
- */
 
 namespace App\Http\Controllers\Admin;
+use Illuminate\Http\Request;
 use App\Repositories\BallotRepo;
 use App\Repositories\BallotDetailRepo;
 use App\Repositories\PdfRepo;
 use Imagick;
 class BallotsController extends CrudController {
-
-    protected $rules = array(
-        'id_user' => 'required|numeric|min:1',
-        'name' => 'requerid',
-        'place' => 'required',
-    );
 
     protected $module = '_ballots';
     protected $ballotDetailRepo;
@@ -31,6 +20,12 @@ class BallotsController extends CrudController {
         $this->ballotDetailRepo = $ballotDetailRepo;
         $this->pdfRepo= $pdfRepo;
     }
+
+    public function create()
+    {
+        return view($this->root . '/' . $this->module . '/create');
+    }
+
 
     public function  detailBallotSave()
      {
@@ -72,12 +67,16 @@ class BallotsController extends CrudController {
          ];
 
      }
-    public function save()    {
-        $data = \Request::all();
+
+    public function store(Request $request)
+    {
+        $data = $request->all();
 
         $data = array_map(function($item){
             return ($item == '' ? '-----' : $item);
         }, $data);
+
+
 
         $ballot_data['name'] = \Request::get('Group1Dato4');
         $ballot_data['place'] = \request::get('Group1Dato1');
@@ -87,6 +86,7 @@ class BallotsController extends CrudController {
         $ballot_data['edad'] = \REquest::get('Group1Dato8');
         $ballot_data['sexo'] = \REquest::get('Group1Dato9');
         $ballot = $this->repo->create($ballot_data);
+
 
         $detailBallot['idBallot'] = $ballot->id;
         $detailBallot['id_user'] = \Auth::id();
@@ -118,11 +118,13 @@ class BallotsController extends CrudController {
         ];
 
     }
+
+
     public function getPDF($id)
     {
         $pdf = $this->repo->findOrFail($id);
         $file = file_get_contents(public_path() . '/' . $pdf->url);
-        return response($file,200)->header('Content-Type','application/pdf');   
+        return response($file,200)->header('Content-Type','application/pdf');
     }
 
     public function getImagen($id)

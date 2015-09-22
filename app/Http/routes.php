@@ -15,7 +15,7 @@ use App\Models\detailBallot;
 
 Route::get('getImagen/{id}',function($id){
 
-	$pdf = Ballot::findOrFail($id);	
+	$pdf = Ballot::findOrFail($id);
 	$im = new Imagick();
 	$im->setResolution(595, 842);
 	$im->readImage($pdf->url);
@@ -26,7 +26,7 @@ Route::get('getImagen/{id}',function($id){
 
 Route::get('getImagen2/{id}',function($id){
 
-	$pdf = detailBallot::findOrFail($id);		
+	$pdf = detailBallot::findOrFail($id);
 	$im = new Imagick();
 	$im->setResolution(595, 842);
 	$im->readImage($pdf->url);
@@ -35,13 +35,6 @@ Route::get('getImagen2/{id}',function($id){
 	echo $im;
 });
 
-
-
-
-
-
-
-
 Route::get('/', 'HomeController@index');
 Route::get('home', 'HomeController@index');
 
@@ -49,16 +42,13 @@ Route::post('save/pdf','Admin\BallotsController@save');
 
 Route::group(['prefix'=>'/','namespace'=>'Admin'],function(){
     Route::resource('ballots','BallotsController');
+		Route::resource('users','UsersController');
     Route::get('ballotsDetail/{id}','BallotsController@detailBallot');
     Route::get('ballotsDetailSave','BallotsController@detailBallotSave');
-    Route::resource('users','UsersController');
     Route::get('pdf/{id}','BallotsController@getPDF');
     Route::get('imagen/{id}','BallotsController@getImagen');
     Route::get('pdfDetail23/{id}','BallotsController@getPDF2');
     Route::get('pdfDetail/{id}','BallotsController@getDetailPDF');
-
-
-
 });
 
 
@@ -66,5 +56,3 @@ Route::controllers([
 	'/' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
-
-

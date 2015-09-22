@@ -23,16 +23,14 @@
     <link rel="apple-touch-icon" href="img/icon180.png" sizes="180x180">
     <!-- END Icons -->
 
-    <!-- Stylesheets -->
     {!! Html::style('/css/app.css') !!}
     {!! Html::style('/assets/css/plugins.css') !!}
     {!! Html::style('/assets/css/main.css') !!}
     {!! Html::style('/assets/css/themes.css') !!}
     {!! Html::style('/assets/css/themes/flat.css') !!}
-    {!! Html::style('/wizard/src/bootstrap-wizard.css') !!}
-    {!! Html::style('/wizard/demo/chosen/chosen.css') !!}
 
-    {!! Html::style('/css/app2.css') !!}
+    {!! Html::style('/wizar/css/bootstrap.min.css') !!}
+    {!! Html::style('/wizar/css/gsdk-base.css') !!}
 
     <!-- END Stylesheets -->
 

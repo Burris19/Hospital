@@ -91,6 +91,7 @@ var CRUD = function(){
                 success: function(response){
                     console.log(response);
                     if(response) {
+                        /*
                         var alert = form.parent().parent().find('.alert');
                         if(response.success){
                             alert.removeClass('alert-danger').addClass('alert-success');
@@ -100,7 +101,7 @@ var CRUD = function(){
                         }
                         alert.html(response.message);
                         alert.fadeIn();
-
+*/
                         if (callback && typeof callback === "function" ){
                             callback(response);
                         }
@@ -113,8 +114,7 @@ var CRUD = function(){
             });
         },
         show: function(div,url,action,callback){
-            var url =this.url_base + '/' + url + '?action=' + action;
-            console.log(url);
+            var url = this.url_base + '/' + url + '/' +  action;
             $(div).load(url,callback);
         }
     }

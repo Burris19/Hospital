@@ -5,6 +5,7 @@
 <script src="wizard/demo/js/prettify.js" type="text/javascript"></script>
 <script src="wizard/src/bootstrap-wizard.js" type="text/javascript"></script>
 
+
 @section('other-scripts')
 
 @show

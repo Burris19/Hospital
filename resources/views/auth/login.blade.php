@@ -86,6 +86,7 @@
                             <input type="password" class="form-control" name="password" placeholder="Contraseña">
                         </div>
                     </div>
+                    <input name="_token" hidden value="{!! csrf_token() !!}" />
                     <div class="form-group form-actions">
                         <div class="col-xs-8">
                             <label class="csscheckbox csscheckbox-primary">
