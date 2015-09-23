@@ -14,10 +14,10 @@
           <form action="ballots" method="POST" name = "form-wizar" id = "form-create" >
             <div class="card wizard-card ct-wizard-azzure" id="wizard">
               <ul>
-                <li><a href="#about" data-toggle="tab">Boleta Referencia</a></li>
-                <li><a href="#account" data-toggle="tab">Medicos</a></li>
-                <li><a href="#address" data-toggle="tab">Gineco-Obstetricos</a></li>
-                <li><a href="#laboral" data-toggle="tab">Examen Fisico</a></li>
+                <li><a href="#about" data-toggle="tab">Paso 1</a></li>
+                <li><a href="#account" data-toggle="tab">Pasos 2</a></li>
+                <li><a href="#address" data-toggle="tab">Paso 3</a></li>
+                <li><a href="#laboral" data-toggle="tab">Paso 4</a></li>
               </ul>
 
             <div class="tab-content">
