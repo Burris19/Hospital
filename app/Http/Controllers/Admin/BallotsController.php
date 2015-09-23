@@ -21,14 +21,16 @@ class BallotsController extends CrudController {
         $this->pdfRepo= $pdfRepo;
     }
 
+    //Devuelve la vista de crear
     public function create()
     {
         return view($this->root . '/' . $this->module . '/create');
     }
 
 
+    //Guarda la vista de contra-boleta
     public function  detailBallotSave()
-     {
+    {
 
          $data = \Request::all();
          $modelo = new BallotDetailRepo();
@@ -68,6 +70,7 @@ class BallotsController extends CrudController {
 
      }
 
+    //Guarda la vista de la boleta
     public function store(Request $request)
     {
         $data = $request->all();
@@ -75,9 +78,6 @@ class BallotsController extends CrudController {
         $data = array_map(function($item){
             return ($item == '' ? '-----' : $item);
         }, $data);
-
-
-
         $ballot_data['name'] = \Request::get('Group1Dato4');
         $ballot_data['place'] = \request::get('Group1Dato1');
         $ballot_data['id_user'] = \Auth::id();
@@ -86,7 +86,6 @@ class BallotsController extends CrudController {
         $ballot_data['edad'] = \REquest::get('Group1Dato8');
         $ballot_data['sexo'] = \REquest::get('Group1Dato9');
         $ballot = $this->repo->create($ballot_data);
-
 
         $detailBallot['idBallot'] = $ballot->id;
         $detailBallot['id_user'] = \Auth::id();
@@ -120,6 +119,7 @@ class BallotsController extends CrudController {
     }
 
 
+    //Obtniene el pdf de la boleta
     public function getPDF($id)
     {
         $pdf = $this->repo->findOrFail($id);
@@ -127,18 +127,20 @@ class BallotsController extends CrudController {
         return response($file,200)->header('Content-Type','application/pdf');
     }
 
+    //obteniene la imagen del pdf
     public function getImagen($id)
     {
         $pdf = $this->repo->findOrFail($id);
         $im = new Imagick();
-        $im->setResolution(595, 842);
+        $im->setResolution(100, 100);
         $im->readImage('pdfs/1.pdf[0]');
-        $im->setImageFormat('jpg');
-        header('Content-Type: image/jpeg');
+        $im->setImageFormat('png');
+        header('Content-Type: image/png');
         return $im;
 
     }
 
+    //obtine el pdf de la contra-boleta
     public function getPDF2($id)
     {
         $pdf =  $this->ballotDetailRepo->findByField('idBallot',$id);
@@ -153,6 +155,7 @@ class BallotsController extends CrudController {
         return response($file,200)->header('Content-Type','application/pdf');
     }
 
+    //Devuelve la vista de llenar la contra-boleta
     public function detailBallot($id)
     {
         return view($this->root . '/' . $this->module  .'/detailBallot', array("id" => $id));

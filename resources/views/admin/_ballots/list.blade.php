@@ -29,18 +29,17 @@
             <td>{{ $value->place }}</td>
             <td>{{ $value->user->username }}</td>
             <td class="text-center">
-                <a href="{{ action('Admin\BallotsController@getPDF', $value->id) }}" target="_blank" data-toggle="tooltip" title="Descargar Boleta de Referencia" class="btn btn-effect-ripple btn-xs btn-success download"><i class="fa fa-download"></i></a>
+                <a href="{{ action('Admin\BallotsController@getPDF', $value->id) }}" target="_blank" data-toggle="tooltip"  class="btn btn-effect-ripple btn-xs btn-success download"><i class="fa fa-download"></i></a>
 
             @if($value->state)
-                <a  data-id="{{$value['id']}}"  data-toggle="tooltip" title="Descargar Contra Referencia" class="btn btn-effect-ripple btn-xs btn-success downloadDetalle"><i class="fa fa-download"></i></a>
+                <a href="{{ action('Admin\BallotsController@getPDF2', $value->id) }}" target="_blank" data-toggle="tooltip"  class="btn btn-effect-ripple btn-xs btn-success download"><i class="fa fa-download"></i></a>
 
-                <a href="getImagen2/{{ $value->id }}" target="_blank" data-toggle="tooltip" title="Descargar Imagen Contra Boleta" class="btn btn-effect-ripple btn-xs btn-success download"><i class="fa fa-download"></i></a>
+                <a href="getImagen2/{{ $value->id }}" target="_blank" data-toggle="tooltip"  class="btn btn-effect-ripple btn-xs btn-success download"><i class="fa fa-download"></i></a>
             @else
-                <a data-id="{{$value['id']}}" class="detalleBallot btn btn-info btn-xs fieldBallot"
-                       data-toggle="tooltip" data-placement="top" title="Llenar Contra Referencia" data-original-title="Llenar Contra Referencia" href="#"><i class="ace-icon fa fa-pencil bigger-120"></i></a>
+                <a data-id="{{$value['id']}}" class="detalleBallot btn btn-info btn-xs fieldBallot" data-toggle="tooltip" data-placement="top" href="#"><i class="ace-icon fa fa-pencil bigger-120"></i></a>
 
             @endif
-                <a href="getImagen/{{ $value->id }}" target="_blank" data-toggle="tooltip" title="Descargar Imagen Boleta" class="btn btn-effect-ripple btn-xs btn-success download"><i class="fa fa-download"></i></a>
+                <a href="getImagen/{{ $value->id }}" target="_blank" data-toggle="tooltip" class="btn btn-effect-ripple btn-xs btn-success download"><i class="fa fa-download"></i></a>
             </td>
         </tr>
     @endforeach

@@ -23,6 +23,7 @@ $(function(){
     });
 
     $('#btnSaveDetailBallot').click(function(e){
+        $('#btnSaveDetailBallot').prop('disabled',true);
         $.ajax({
             url: 'ballotsDetailSave',
             data: $("#form-create-Detail").serialize(),
@@ -31,7 +32,6 @@ $(function(){
                 if(data.success) {
                     window.open('pdfDetail/' + data.id,'_blank');
                     $('#page').load('ballots');
-
                 }
             },
             error: function(xhr,ajaxOptions,thrownError){
@@ -41,7 +41,9 @@ $(function(){
         });
     });
 
-
+    $('.downloadDetalle').click(function(e){
+        alert("hola como estas");
+    });
 
 
 });
